@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <script>
+var quotes = [
+    ":D"
+    //"Sed fugit interea, fugit inreparabile tempus.",
+    //"How long? Not long. 'Cause what you reap, is what you sow.",
+    //"Il faut imaginer Sisyphe heureux."
+];
+
+function setup()
+{
+    var p = document.getElementById("pretence");
+    var q = quotes[Math.floor(Math.random() * quotes.length)];
+    p.innerHTML = q;
+}
+function repeat()
+{
+    var t = document.getElementById("target");
+    //var d = new Date((new Date("15 June, 2017, 09:00:00 +0100")) - (new Date()));
+    var d = new Date((new Date(2017, 5, 15, 9, 0, 0)) - (new Date())); // Months are 0-based
+    t.innerHTML = d.getMonth() + " months, " + (d.getDate() - 1) + " days, " + d.getHours() + " hours, " + d.getMinutes() + " minutes, " + d.getSeconds() + " seconds."; // Date is 1-based
+}
+
+window.onload = function() { setup(); window.setInterval(repeat, 1000); }
+        </script>
+    </head>
+    <body>
+        <h1 id="pretence"></h1>
+        <h1 id="target"></h1>
+    </body>
+</html>
