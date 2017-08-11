@@ -1,0 +1,8 @@
+get a better ssl-test rating: remove weak ciphers and possibly old TLS versions altogether
+why does it think it's called betelgeuice?
+
+Dockerfile
+# TODO setup a cron job to renew
+# TODO use --standalone to use its own http server to do the challenge so can
+# uncomment phpsysingo location
+# TODO can split out bootstrap package installation too? separate verb?
