@@ -1,6 +1,6 @@
 ./certbot-auto certonly --standalone --no-bootstrap --noninteractive --agree-tos --no-eff-email \
     --email="desborough@gmail.com" \
-    --domains="frogstar-a.empty.org.uk"
+    --domains="frogstar-a.empty.org.uk,empty.org.uk"
 
 #./certbot-auto install --nginx \
 #    --cert-path /etc/letsencrypt/live/frogstar-a.empty.org.uk/cert.pem \
