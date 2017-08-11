@@ -1,5 +1,5 @@
-# Debian, 8 at last check
-FROM nginx
+# Debian 9
+FROM nginx:1.13.3
 
 COPY nginx-config/ /etc/nginx/
 
@@ -13,7 +13,7 @@ RUN mkdir -p /spool/nginx/cache
 
 # == Let's Encrypt ==
 # No debian pacakges for letsencrypt
-RUN apt update && apt install -y --no-install-recommends wget && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/*
 RUN wget https://dl.eff.org/certbot-auto && chmod a+x certbot-auto
 
 # Install deps at build-time using its bootstrap script
