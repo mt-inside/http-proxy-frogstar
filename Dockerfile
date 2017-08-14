@@ -3,8 +3,6 @@ FROM nginx:1.13.3
 
 COPY nginx-config/ /etc/nginx/
 
-COPY htdocs/ /usr/share/nginx/html
-
 RUN cd /var/log/nginx && \
     mkdir $(ls /etc/nginx/sites-enabled)
 
