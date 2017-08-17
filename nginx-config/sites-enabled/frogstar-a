@@ -20,10 +20,12 @@ server {
 	access_log /var/log/nginx/frogstar-a/access.log;
 	error_log /var/log/nginx/frogstar-a/error.log;
 
-	# Fetched by certbot before nginx starts
-	ssl_certificate /etc/letsencrypt/live/frogstar-a.empty.org.uk/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/frogstar-a.empty.org.uk/privkey.pem;
 	include /etc/nginx/options-ssl-nginx.conf;
+	# Fetched by certbot before nginx starts
+	ssl_certificate /etc/letsencrypt/live/frogstar-a.empty.org.uk/fullchain.pem; # all certs including end-entity
+	ssl_certificate_key /etc/letsencrypt/live/frogstar-a.empty.org.uk/privkey.pem; # private key
+	# for OCSP stapling
+	ssl_trusted_certificate /etc/letsencrypt/live/frogstar-a.empty.org.uk/chain.pem; # chain, minus end-entity
 
 	auth_basic "matt";
 	auth_basic_user_file /etc/nginx/htpasswd;
