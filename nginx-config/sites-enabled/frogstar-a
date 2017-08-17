@@ -45,4 +45,9 @@ server {
 		include proxy_params;
 		proxy_pass http://phpsysinfo/;
 	}
+
+	location /httpbin/ {
+		include proxy_params;
+		proxy_pass http://httpbin:8000/;
+	}
 }
