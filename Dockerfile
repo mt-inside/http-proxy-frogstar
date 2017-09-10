@@ -1,5 +1,6 @@
+# nginx 1.13.x
 # Debian 9
-FROM nginx:1.13.3
+FROM nginx:1.13
 
 COPY nginx-config/ /etc/nginx/
 
