@@ -37,7 +37,7 @@ server {
 
 	location /phpsysinfo/ {
 		include proxy_params;
-		proxy_pass http://phpsysinfo/;
+		proxy_pass http://172.18.0.1:40001/;
 	}
 
 	location /httpbin/ {
