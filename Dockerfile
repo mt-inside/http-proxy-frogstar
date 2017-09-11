@@ -2,11 +2,6 @@
 # Debian 9
 FROM nginx:1.13
 
-COPY nginx-config/ /etc/nginx/
-
-RUN cd /var/log/nginx && \
-    mkdir $(ls /etc/nginx/sites-enabled)
-
 RUN mkdir -p /spool/nginx/cache
 
 
@@ -20,6 +15,8 @@ RUN ./certbot-auto --noninteractive --agree-tos --os-packages-only
 
 VOLUME /etc/letsencrypt
 
+
+COPY nginx-config/ /etc/nginx/
 
 # Can't publish a port during docker build (makes sense). Thus certbot can't get
 # certs during build, so we do it at first run. This is actually better cause it
