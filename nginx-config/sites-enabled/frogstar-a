@@ -37,11 +37,17 @@ server {
 
 	location /phpsysinfo/ {
 		include proxy_params;
-		proxy_pass http://172.18.0.1:40001/;
+		proxy_pass http://host:40001/;
 	}
 
 	location /httpbin/ {
 		include proxy_params;
 		proxy_pass http://httpbin:8000/;
 	}
+
+#        location /sysstats/ {
+#            include uwsgi_params;
+#            uwsgi_pass sysstats_frontend:3031;
+#            uwsgi_param SCRIPT_NAME /sysstats;
+#        }
 }
