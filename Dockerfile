@@ -4,22 +4,12 @@ FROM nginx:1.13
 
 RUN mkdir -p /spool/nginx/cache
 
+COPY nginx-config/ /etc/nginx/
 
-# == Let's Encrypt ==
-# No debian pacakges for letsencrypt
-RUN apt update && apt install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/*
-RUN wget https://dl.eff.org/certbot-auto && chmod a+x certbot-auto
 
-# Install deps at build-time using its bootstrap script
-RUN ./certbot-auto --noninteractive --agree-tos --os-packages-only
-
+# Cert input
 VOLUME /etc/letsencrypt
 
 
-COPY nginx-config/ /etc/nginx/
-
-# Can't publish a port during docker build (makes sense). Thus certbot can't get
-# certs during build, so we do it at first run. This is actually better cause it
-# stops certs expiring between build and run.
-COPY cmd.sh /
-CMD /cmd.sh
+# This differs from the parent image's CMD in that e.g. it lacks a daemon flag
+CMD ["nginx"]
