@@ -2,7 +2,7 @@ build:
 	docker build . --pull -t http-proxy
 
 run:
-	docker run --name http-proxy -d --rm --publish 80:80 --publish 443:443 --volume /var/www/ssl:/etc/letsencrypt --volume /var/www/html:/usr/share/nginx/html --network service_net http-proxy
+	docker run -d --name http-proxy --rm --publish 80:80 --publish 443:443 --volume /var/www/ssl:/etc/letsencrypt --volume /var/www/html:/usr/share/nginx/html --network service_net http-proxy
 
 run-fg:
 	docker run -it --name http-proxy --rm --publish 80:80 --publish 443:443 --volume /var/www/ssl:/etc/letsencrypt --volume /var/www/html:/usr/share/nginx/html --network service_net http-proxy

@@ -14,6 +14,8 @@ server {
 	# Note that server_names_hash_bucket_size has been increased
 	server_name frogstar-a.empty.org.uk empty.org.uk;
 
+
+	# TLS Certs
 	include /etc/nginx/options-ssl-nginx.conf;
 	# Fetched by certbot before nginx starts
 	ssl_certificate /etc/letsencrypt/live/frogstar-a.empty.org.uk/fullchain.pem; # all certs including end-entity
@@ -21,9 +23,16 @@ server {
 	# for OCSP stapling
 	ssl_trusted_certificate /etc/letsencrypt/live/frogstar-a.empty.org.uk/chain.pem; # chain, minus end-entity
 
+
+	# Username and password by default; turned off for non-sensitive locations
 	auth_basic "matt";
 	auth_basic_user_file /etc/nginx/htpasswd;
 
+
+	# Serve any static html that's been copied or mounted in
+	# NB: strongly recommended to pull anything here out to a container
+	# (this is k8s' ingress controller, all static content should go
+	# in a default-backend-frogstar")
 	location / {
 		auth_basic off;
 
