@@ -55,6 +55,11 @@ server {
 #            uwsgi_param SCRIPT_NAME /sysstats;
 #        }
 
+	# Ubuntu has an nginx-unit pacakge, so we use that to do both
+	# mime-correct static file serving and PHP execution.
+	# Unit doesn't currently serve static files (at least, not well -
+	# all mimes are text/html) but it's an accepted feature request:
+	# https://github.com/nginx/unit/issues/62
 	location /phpsysinfo/ {
 		include proxy_params;
 		proxy_pass http://host:40001/;
