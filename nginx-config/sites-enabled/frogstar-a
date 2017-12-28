@@ -44,11 +44,6 @@ server {
 		try_files $uri $uri/ =404;
 	}
 
-	location /phpsysinfo/ {
-		include proxy_params;
-		proxy_pass http://host:40001/;
-	}
-
 	location /httpbin/ {
 		include proxy_params;
 		proxy_pass http://httpbin:8000/;
@@ -59,4 +54,9 @@ server {
 #            uwsgi_pass sysstats_frontend:3031;
 #            uwsgi_param SCRIPT_NAME /sysstats;
 #        }
+
+	location /phpsysinfo/ {
+		include proxy_params;
+		proxy_pass http://host:40001/;
+	}
 }
