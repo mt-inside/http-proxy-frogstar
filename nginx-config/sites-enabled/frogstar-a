@@ -49,11 +49,26 @@ server {
 		proxy_pass http://httpbin:8000/;
 	}
 
-#        location /sysstats/ {
-#            include uwsgi_params;
-#            uwsgi_pass sysstats_frontend:3031;
-#            uwsgi_param SCRIPT_NAME /sysstats;
-#        }
+	location /prometheus/ {
+		include proxy_params;
+		proxy_pass http://prometheus:9090/;
+	}
+
+	location /counter/ {
+		include proxy_params;
+		proxy_pass http://counter:8080/;
+	}
+
+	location /grafana/ {
+		include proxy_params;
+		proxy_pass http://grafana:3000/;
+	}
+
+	location /sysstats/ {
+		include uwsgi_params;
+		uwsgi_param SCRIPT_NAME /sysstats;
+		uwsgi_pass sysstats_frontend:3031;
+	}
 
 	# Ubuntu has an nginx-unit pacakge, so we use that to do both
 	# mime-correct static file serving and PHP execution.
